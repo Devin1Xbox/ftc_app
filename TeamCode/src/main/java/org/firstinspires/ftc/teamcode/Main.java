@@ -66,6 +66,7 @@ public class Main extends LinearOpMode {
     public void runOpMode() {
         //controller config
         while(opModeIsActive()) {
+            // my new comment
             Robot myRobit = new Robot();
             //forward
             if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
