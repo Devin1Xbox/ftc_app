@@ -84,6 +84,12 @@ public class Test extends LinearOpMode {
         telemetry.update();
     }
 
+    // Determine if stop button has been pressed
+    public boolean stopButtonPressed() {
+        // todo
+        return false;
+    }
+
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -107,11 +113,14 @@ public class Test extends LinearOpMode {
         while (opModeIsActive()) {
             //go forward
             // set target to 10k
+            if(stopButtonPressed()) {
+                stop();
+            }
 
             int TargetPosition = goDistance(10000, 1.0);
 
             while(motor.getCurrentPosition() != TargetPosition) {
-                if(isStopRequested()) {
+                if(stopButtonPressed()) {
                     stop();
                 }
                 updateTelemetry();
@@ -120,7 +129,7 @@ public class Test extends LinearOpMode {
             TargetPosition = goDistance(10000, -1.0);
 
             while(motor.getCurrentPosition() != TargetPosition) {
-                if(isStopRequested()) {
+                if(stopButtonPressed()) {
                     stop();
                 }
                 updateTelemetry();
