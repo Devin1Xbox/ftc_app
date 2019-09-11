@@ -37,6 +37,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import java.lang.annotation.Target;
+
 
 /**
  * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
@@ -58,6 +60,30 @@ public class Test extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor motor = null;
 
+
+    // Go backward x distance
+    public int goDistance(int distance, double power) {
+        int position = motor.getCurrentPosition();
+        telemetry.addData("Initial Position ", position);
+        //set target to input
+        int TargetPosition;
+        if (power < 0) {
+            TargetPosition = position - distance;
+        } else {
+            TargetPosition = position + distance;
+        }
+        motor.setTargetPosition(TargetPosition);
+        motor.setPower(power);
+        return TargetPosition;
+    }
+
+    //Update Telemetry
+    public void updateTelemetry() {
+        int position = motor.getCurrentPosition();
+        telemetry.addData("Current Position ", position);
+        telemetry.update();
+    }
+
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -78,40 +104,27 @@ public class Test extends LinearOpMode {
         int position = motor.getCurrentPosition();
         telemetry.addData("Initial Position ", position);
 
-        if(opModeIsActive()) {
+        while (opModeIsActive()) {
             //go forward
             // set target to 10k
-            motor.setTargetPosition(10000);
-            motor.setPower(1.0);
 
-            // update telemetry, update phone
-            while(position <= 9995) {
+            int TargetPosition = goDistance(10000, 1.0);
+
+            while(motor.getCurrentPosition() != TargetPosition) {
                 if(isStopRequested()) {
                     stop();
                 }
-                position = motor.getCurrentPosition();
-                telemetry.addData("Current Position", position) ;
-                telemetry.update();
+                updateTelemetry();
             }
 
-            telemetry.addData("Not in while loop", "Free");
-            telemetry.update();
+            TargetPosition = goDistance(10000, -1.0);
 
-            motor.setTargetPosition(0);
-            motor.setPower(-1.0);
-
-            while(position >= 5) {
+            while(motor.getCurrentPosition() != TargetPosition) {
                 if(isStopRequested()) {
                     stop();
                 }
-                position = motor.getCurrentPosition();
-                telemetry.addData("Current Position", position) ;
-                telemetry.update();
-
+                updateTelemetry();
             }
-            telemetry.addData("Yay, You're done!", "Good Job");
-            telemetry.update();
-
         }
     }
 }
