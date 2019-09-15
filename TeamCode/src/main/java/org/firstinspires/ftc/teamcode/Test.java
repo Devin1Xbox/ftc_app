@@ -72,7 +72,7 @@ public class Test extends LinearOpMode {
         } else {
             TargetPosition = position + distance;
         }
-        motor.setTargetPosition(TargetPosition);
+        motor.setTargetPosition(distance);
         motor.setPower(power);
         return TargetPosition;
     }
@@ -114,32 +114,22 @@ public class Test extends LinearOpMode {
         int position = motor.getCurrentPosition();
         telemetry.addData("Initial Position ", position);
 
-        while (opModeIsActive()) {
-            //go forward
-            // set target to 10k
+        if (opModeIsActive()) {
+            goDistance(10000, 1.0);
 
-
-            int TargetPosition = goDistance(9995, 1.0);
-
-            while(position != TargetPosition) {
-            //    if(stopButtonPressed()) {
-           //         stop();
-          //      }
-                if(stopButtonPressed()) {
-                    requestOpModeStop();
-                }
+            while(position <= 9995) {
+//                if(stopButtonPressed()) {
+//                    requestOpModeStop();
+//                }
                 updateTelemetry();
             }
 
-            TargetPosition = goDistance(0, -1.0);
+            goDistance(-10000, -1.0);
 
-            while(position != TargetPosition) {
-                //if(isStopRequested()) {
-              //      stopButtonPressed();
-            //    }
-                if(stopButtonPressed()) {
-                    requestOpModeStop();
-                }
+            while(position >= 0) {
+//                if(stopButtonPressed()) {
+//                    requestOpModeStop();
+//                }
                 updateTelemetry();
             }
         }
