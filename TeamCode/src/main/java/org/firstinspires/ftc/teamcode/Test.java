@@ -86,7 +86,11 @@ public class Test extends LinearOpMode {
 
     // Determine if stop button has been pressed
     public boolean stopButtonPressed() {
-        stop();
+        final boolean isStopRequested1 = true;
+        if(isStopRequested1 == true) {
+           Thread.currentThread().stop();
+
+        }
         return(isStopRequested());
     }
 
@@ -113,24 +117,28 @@ public class Test extends LinearOpMode {
         while (opModeIsActive()) {
             //go forward
             // set target to 10k
-            if(stopButtonPressed()) {
-                stop();
-            }
 
-            int TargetPosition = goDistance(10000, 1.0);
 
-            while(motor.getCurrentPosition() != TargetPosition) {
+            int TargetPosition = goDistance(9995, 1.0);
+
+            while(position != TargetPosition) {
+            //    if(stopButtonPressed()) {
+           //         stop();
+          //      }
                 if(stopButtonPressed()) {
-                    stop();
+                    requestOpModeStop();
                 }
                 updateTelemetry();
             }
 
-            TargetPosition = goDistance(10000, -1.0);
+            TargetPosition = goDistance(0, -1.0);
 
-            while(motor.getCurrentPosition() != TargetPosition) {
+            while(position != TargetPosition) {
+                //if(isStopRequested()) {
+              //      stopButtonPressed();
+            //    }
                 if(stopButtonPressed()) {
-                    stop();
+                    requestOpModeStop();
                 }
                 updateTelemetry();
             }
