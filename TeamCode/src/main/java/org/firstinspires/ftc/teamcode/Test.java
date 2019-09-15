@@ -86,10 +86,8 @@ public class Test extends LinearOpMode {
 
     // Determine if stop button has been pressed
     public boolean stopButtonPressed() {
-        if(stopButtonPressed()) {
-            stop();
-        }
-        return false;
+        stop();
+        return(isStopRequested());
     }
 
     @Override
