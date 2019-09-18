@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.Range;
 
 public class Robot extends LinearOpMode  {
 
@@ -29,30 +30,34 @@ public class Robot extends LinearOpMode  {
 
         void goForward (double power){
             // func of making robot go forwards
-            frontLeftMotor.setPower(1.0);
-            backLeftMotor.setPower(1.0);
-            frontRightMotor.setPower(1.0);
-            backRightMotor.setPower(1.0);
+            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
+            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
+            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
+            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
         }
 
         void goBackward (double power) {
             // func of making robot go backwards
-            frontLeftMotor.setPower(-1.0);
-            backLeftMotor.setPower(-1.0);
-            frontRightMotor.setPower(-1.0);
-            backRightMotor.setPower(-1.0);
+            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
+            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
+            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
+            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
         }
 
         void turnLeft (double power) {
             // func of making robot go left
-            frontRightMotor.setPower(1.0);
-            backRightMotor.setPower(1.0);
+            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
+            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
+            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
+            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
         }
 
         void turnRight (double power) {
             // func of making robot go right
-            frontLeftMotor.setPower(1.0);
-            backLeftMotor.setPower(1.0);
+            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
+            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
+            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
+            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
         }
 
         void strafeRight (double power) {
