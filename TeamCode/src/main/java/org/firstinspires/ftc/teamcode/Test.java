@@ -36,8 +36,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
-
+import org.firstinspires.ftc.teamcode.Robot;
 import java.lang.annotation.Target;
+
 
 
 /**
@@ -99,8 +100,12 @@ public class Test extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
+        Robot lol = new Robot();
 
-        motor = hardwareMap.get(DcMotor.class, "motor");
+        lol.frontLeftMotor = hardwareMap.dcMotor.get("frontLeftMotor");
+        lol.backLeftMotor = hardwareMap.dcMotor.get("backLeftMotor");
+        lol.frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
+        lol.backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
 
 
         // Wait for the game to start (driver presses PLAY)
@@ -114,24 +119,35 @@ public class Test extends LinearOpMode {
         int position = motor.getCurrentPosition();
         telemetry.addData("Initial Position ", position);
 
-        if (opModeIsActive()) {
-            goDistance(10000, 1.0);
-
-            while(position <= 9995) {
-//                if(stopButtonPressed()) {
-//                    requestOpModeStop();
-//                }
-                updateTelemetry();
+        while(opModeIsActive()) {
+            lol.strafeLeft(1.0);
+            try {
+                wait(5000);
+            } catch(Exception e) {
+                //nothing
             }
-
-            goDistance(-10000, -1.0);
-
-            while(position >= 0) {
-//                if(stopButtonPressed()) {
-//                    requestOpModeStop();
-//                }
-                updateTelemetry();
+            lol.strafeRight(1.0);
+            try {
+                wait(5000);
+            } catch(Exception e) {
+                //nothing
+            }
+//            goDistance(10000, 1.0);
+//
+//            while(position <= 9995) {
+////                if(stopButtonPressed()) {
+////                    requestOpModeStop();
+////                }
+//                updateTelemetry();
+//            }
+//
+//            goDistance(-10000, -1.0);
+//
+//            while(position >= 0) {
+////                if(stopButtonPressed()) {
+////                    requestOpModeStop();
+////                }
+//                updateTelemetry();
             }
         }
     }
-}

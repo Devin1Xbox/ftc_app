@@ -39,6 +39,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.Func;
+import org.firstinspires.ftc.robotcore.external.Function;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.Test;
 
@@ -67,8 +69,10 @@ public class EncodedMotors extends LinearOpMode {
         while(opModeIsActive()) {
             locked = true;
             int position = motor.getCurrentPosition();
-            telemetry.addData("Encoder Position", position);
-            telemetry.update();
+            motor.setTargetPosition(10000);
+            motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             motor.setPower(0.5);
 //            if (motor.getCurrentPosition() != 500) {
 //                motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -78,23 +82,24 @@ public class EncodedMotors extends LinearOpMode {
 //            if(motor.getCurrentPosition() == 500) {
 //                locked = false;
 //            }
-            motor.setTargetPosition(10000);
-            motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            while(position != 10000 && opModeIsActive()) {
+            while(position >= 10000 && opModeIsActive()) {
                 telemetry.addData("Encoder Position", position);
                 telemetry.update();
+                if(isStopRequested()) {
+                    break;
+                }
             }
             motor.setTargetPosition(0);
             motor.setPower(-0.5);
             while(position != 0 && opModeIsActive()) {
                 telemetry.addData("Encoder Position", position);
                 telemetry.update();
+                if(isStopRequested()) {
+                    break;
+                }
             }
             stop();
         }
-
     }
-
 }
 

@@ -60,7 +60,7 @@ public class Robot extends LinearOpMode  {
             backRightMotor.setPower(Range.clip(0,-1.0,1.0));
         }
 
-        void strafeRight (double power) {
+        public void strafeRight (double power) {
             // func of making robot strafe left **still questionable
             frontLeftMotor.setPower(-1.0);
             backLeftMotor.setPower(1.0);
