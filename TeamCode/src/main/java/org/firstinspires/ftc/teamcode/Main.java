@@ -77,21 +77,21 @@ public class Main extends LinearOpMode {
             // my new comment
             Robot lol = new Robot();
             //forward
-            if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
-                lol.goForward(Range.clip(0, -1.0, 1.0));
-            }
-
-            if((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
-                lol.goBackward(Range.clip(0,-1.0, 1.0));
-            }
-
-            if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
-                lol.turnLeft(Range.clip(0, -1.0, 1.0));
-            }
-
-            if((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
-                lol.turnRight(Range.clip(0, -1.0, 1.0));
-            }
+//            if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
+//                lol.goForward();
+//            }
+//
+//            if((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
+//                lol.goBackward();
+//            }
+//
+//            if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
+//                lol.turnLeft();
+//            }
+//
+//            if((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
+//                lol.turnRight();
+//            }
         }
 
     }

@@ -27,54 +27,60 @@ public class Robot extends LinearOpMode  {
         public void runOpMode () throws InterruptedException {
             // do nothing, we'll inherit from this class and implement the function there
         }
+//
+//        float inputy = gamepad1.left_stick_y;
+//        float inputx = gamepad1.left_stick_x;
+//        float inputrt = gamepad1.right_trigger;
+//        float inputlt = gamepad1.left_trigger;
+//
+//        void goForward() {
+//            // func of making robot go forwards
+//            frontLeftMotor.setPower(Range.clip(inputy,-1.0,1.0));
+//            backLeftMotor.setPower(Range.clip(inputy,-1.0,1.0));
+//            frontRightMotor.setPower(Range.clip(inputy,-1.0,1.0));
+//            backRightMotor.setPower(Range.clip(inputy,-1.0,1.0));
+//        }
+//
+//        void goBackward() {
+//            // func of making robot go backwards
+//            frontLeftMotor.setPower(Range.clip(-inputy,-1.0,1.0));
+//            backLeftMotor.setPower(Range.clip(-inputy,-1.0,1.0));
+//            frontRightMotor.setPower(Range.clip(-inputy,-1.0,1.0));
+//            backRightMotor.setPower(Range.clip(-inputy,-1.0,1.0));
+//        }
+//
+//        void turnLeft() {
+//            // func of making robot go left
+//            frontRightMotor.setPower(Range.clip(inputx,-1.0,1.0));
+//            backRightMotor.setPower(Range.clip(inputx,-1.0,1.0));
+//            frontLeftMotor.setPower(Range.clip(-inputx,-1.0,1.0));
+//            backLeftMotor.setPower(Range.clip(-inputx,-1.0,1.0));
+//        }
+//
+//        void turnRight() {
+//            // func of making robot go right
+//            frontLeftMotor.setPower(Range.clip(inputx,-1.0,1.0));
+//            backLeftMotor.setPower(Range.clip(inputx,-1.0,1.0));
+//            frontRightMotor.setPower(Range.clip(-inputx,-1.0,1.0));
+//            backRightMotor.setPower(Range.clip(-inputx,-1.0,1.0));
+//        }
+//
+//        public void strafeRight() {
+//            // func of making robot strafe left **still questionable
+//            frontLeftMotor.setPower(Range.clip(inputrt,-1.0,1.0));
+//            backLeftMotor.setPower(Range.clip(inputrt,-1.0,1.0));
+//            frontRightMotor.setPower(Range.clip(inputrt,-1.0,1.0));
+//            backRightMotor.setPower(Range.clip(inputrt,-1.0,1.0));
+//
+//        }
 
-        void goForward (double power){
-            // func of making robot go forwards
-            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
-            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
-        }
-
-        void goBackward (double power) {
-            // func of making robot go backwards
-            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
-            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
-        }
-
-        void turnLeft (double power) {
-            // func of making robot go left
-            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
-            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
-            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-        }
-
-        void turnRight (double power) {
-            // func of making robot go right
-            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
-            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
-        }
-
-        public void strafeRight (double power) {
-            // func of making robot strafe left **still questionable
-            frontLeftMotor.setPower(-1.0);
-            backLeftMotor.setPower(1.0);
-            frontRightMotor.setPower(1.0);
-            backRightMotor.setPower(-1.0);
-
-        }
-
-        void strafeLeft (double power) {
+        void strafeLeft(double power, int targetPosition) {
         //func of making robot strafe right **still questionable*********
-            frontLeftMotor.setPower(1.0);
-            backLeftMotor.setPower(-1.0);
-            frontRightMotor.setPower(-1.0);
-            backRightMotor.setPower(1.0);
+            motor.setTargetPosition(targetPosition);
+            frontLeftMotor.setPower(-power);
+            backLeftMotor.setPower(power);
+            frontRightMotor.setPower(power);
+            backRightMotor.setPower(-power);
         }
 
 }

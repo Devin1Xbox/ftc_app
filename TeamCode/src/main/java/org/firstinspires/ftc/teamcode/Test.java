@@ -121,7 +121,13 @@ public class Test extends LinearOpMode {
 
 
         while(opModeIsActive()) {
-            lol.strafeLeft(1.0);
+            int position = motor.getCurrentPosition();
+            telemetry.addData("Encoder Position", position);
+            updateTelemetry();
+            lol.strafeLeft(0.5, 5000);
+            if(position == 5000) {
+
+            }
 
 //            this.sleep(1000);
 //            lol.strafeRight(1.0);
@@ -131,7 +137,7 @@ public class Test extends LinearOpMode {
 ////                if(stopButtonPressed()) {
 ////                    requestOpModeStop();
 ////                }
-//                updateTelemetry();
+//                updateTelemetry();                 DIDNT WORK
 //            }
 //
 //            goDistance(-10000, -1.0);
