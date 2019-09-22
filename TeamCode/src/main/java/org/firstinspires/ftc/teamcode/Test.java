@@ -107,31 +107,24 @@ public class Test extends LinearOpMode {
         lol.frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
         lol.backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
 
+        lol.frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
+        lol.backRightMotor.setDirection(DcMotor.Direction.REVERSE);
+
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         runtime.reset();
 
-        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        int position = motor.getCurrentPosition();
-        telemetry.addData("Initial Position ", position);
 
         while(opModeIsActive()) {
             lol.strafeLeft(1.0);
-            try {
-                wait(5000);
-            } catch(Exception e) {
-                //nothing
-            }
-            lol.strafeRight(1.0);
-            try {
-                wait(5000);
-            } catch(Exception e) {
-                //nothing
-            }
+
+//            this.sleep(1000);
+//            lol.strafeRight(1.0);
 //            goDistance(10000, 1.0);
 //
 //            while(position <= 9995) {

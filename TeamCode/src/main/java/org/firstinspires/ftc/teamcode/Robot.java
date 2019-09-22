@@ -17,10 +17,10 @@ public class Robot extends LinearOpMode  {
     DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor;
 
     Robot() {
-        frontLeftMotor = hardwareMap.dcMotor.get("frontLeftMotor");
-        backLeftMotor = hardwareMap.dcMotor.get("backLeftMotor");
-        frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
-        backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
+//        frontLeftMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
+//        backLeftMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
+//        frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
+//        backRightMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
     }
 
         @Override
