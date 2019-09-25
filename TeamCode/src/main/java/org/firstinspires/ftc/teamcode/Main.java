@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -74,24 +75,32 @@ public class Main extends LinearOpMode {
     public void runOpMode() {
         //controller config
         while(opModeIsActive()) {
-            // my new comment
             Robot lol = new Robot();
             //forward
-//            if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
-//                lol.goForward();
-//            }
-//
-//            if((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
-//                lol.goBackward();
-//            }
-//
-//            if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
-//                lol.turnLeft();
-//            }
-//
-//            if((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
-//                lol.turnRight();
-//            }
+            if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
+                lol.goForward(gamepad1.left_stick_y);
+            }
+
+            if((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
+                lol.goBackward(gamepad1.left_stick_y);
+            }
+
+            if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
+                lol.turnLeft(gamepad1.left_stick_x);
+            }
+
+            if((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
+                lol.turnRight(gamepad1.left_stick_x);
+            }
+
+            if(gamepad1.left_bumper) {
+                lol.strafeLeft(0.5);
+            }
+
+            if(gamepad1.right_bumper) {
+                lol.strafeRight(0.5);
+            }
+
         }
 
     }

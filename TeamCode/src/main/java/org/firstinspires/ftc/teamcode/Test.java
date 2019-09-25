@@ -88,11 +88,11 @@ public class Test extends LinearOpMode {
     // Determine if stop button has been pressed
     public boolean stopButtonPressed() {
         final boolean isStopRequested1 = true;
-        if(isStopRequested1 == true) {
-           Thread.currentThread().stop();
+        if (isStopRequested1 == true) {
+            Thread.currentThread().stop();
 
         }
-        return(isStopRequested());
+        return (isStopRequested());
     }
 
     @Override
@@ -119,15 +119,15 @@ public class Test extends LinearOpMode {
 //        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-
-        while(opModeIsActive()) {
-            int position = motor.getCurrentPosition();
-            telemetry.addData("Encoder Position", position);
-            updateTelemetry();
-            lol.strafeLeft(0.5, 5000);
-            if(position == 5000) {
-
-            }
+//
+//        while(opModeIsActive()) {
+//            int position = motor.getCurrentPosition();
+//            telemetry.addData("Encoder Position", position);
+//            updateTelemetry();
+//            lol.strafeLeft(0.5);
+//            if(position == 5000) {
+//                stop();
+//            }
 
 //            this.sleep(1000);
 //            lol.strafeRight(1.0);
@@ -147,6 +147,8 @@ public class Test extends LinearOpMode {
 ////                    requestOpModeStop();
 ////                }
 //                updateTelemetry();
-            }
-        }
+//            }
+//        }
+//    }
     }
+}
