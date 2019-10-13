@@ -72,7 +72,9 @@ public class Main extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        //controller config
+
+        waitForStart();
+
         while(opModeIsActive()) {
             // my new comment
             Robot lol = new Robot();
