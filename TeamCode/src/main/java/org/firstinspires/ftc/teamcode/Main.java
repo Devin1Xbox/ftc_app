@@ -56,11 +56,11 @@ import org.firstinspires.ftc.teamcode.Robot;
  */
 
 @TeleOp(name="Main", group="Linear Opmode")
-public class Main extends LinearOpMode {
+public class Main extends Robot {
 
     // Declare OpMode members.
-    private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor motor = null;
+//    private ElapsedTime runtime = new ElapsedTime();
+//    private DcMotor motor = null;
 
 
 //    double drive = -gamepad1.left_stick_y;
@@ -69,33 +69,50 @@ public class Main extends LinearOpMode {
 //    rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
 
-
     @Override
     public void runOpMode() {
+        super.runOpMode();
+        System.out.println("This is the hardware map from Main "+ this.hardwareMap);
 
         waitForStart();
 
-        while(opModeIsActive()) {
-            // my new comment
-            Robot lol = new Robot();
+        while (opModeIsActive()) {
             //forward
-            if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
-                lol.goForward(Range.clip(0, -1.0, 1.0));
+            if ((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
+                this.goForward(gamepad1.left_stick_y);
             }
 
-            if((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
-                lol.goBackward(Range.clip(0,-1.0, 1.0));
+            if ((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
+                this.goBackward(gamepad1.left_stick_y);
             }
 
-            if((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
-                lol.turnLeft(Range.clip(0, -1.0, 1.0));
+            if ((gamepad1.right_stick_y >= gamepad1.right_stick_x) && (gamepad1.right_stick_y <= -gamepad1.right_stick_x)) {
+                this.turnLeft(gamepad1.right_stick_x);
             }
 
-            if((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
-                lol.turnRight(Range.clip(0, -1.0, 1.0));
+            if ((gamepad1.right_stick_y <= gamepad1.right_stick_x) && (gamepad1.right_stick_y >= -gamepad1.right_stick_x)) {
+                this.turnRight(gamepad1.right_stick_x);
             }
+
+            if (gamepad1.left_trigger != 0) {
+                this.strafeLeft(gamepad1.left_trigger);
+            }
+
+            if(gamepad1.right_trigger != 0) {
+                this.strafeRight(gamepad1.right_trigger);
+            }
+//
+            if(gamepad2.left_stick_y > gamepad2.left_stick_x) {
+                this.arm(gamepad2.left_stick_y * 0.05);
+            }
+
+            if(gamepad2.left_stick_y < gamepad2.left_stick_x) {
+                this.arm(gamepad2.left_stick_y);
+            }
+
         }
 
     }
 }
+
 

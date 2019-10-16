@@ -2,9 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 
-public class Robot extends LinearOpMode  {
+public abstract class Robot extends LinearOpMode  {
 
     private DcMotor motor;
 
@@ -14,67 +16,115 @@ public class Robot extends LinearOpMode  {
 
 
 
-    DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor;
-
-    Robot() {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
-        backRightMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
-    }
+    DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, armMotor;
 
         @Override
-        public void runOpMode () throws InterruptedException {
-            // do nothing, we'll inherit from this class and implement the function there
+        public void runOpMode () {
+            System.out.println("This is the hardware map from ROOBT" + hardwareMap);
+            frontLeftMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
+            backLeftMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
+            frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
+            backRightMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
+            armMotor = hardwareMap.get(DcMotor.class, "armMotor");
+
+            frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
+            backLeftMotor.setDirection(DcMotor.Direction.FORWARD);
+            frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
+            backRightMotor.setDirection(DcMotor.Direction.REVERSE);
         }
 
         void goForward (double power){
             // func of making robot go forwards
-            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
-            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
+            telemetry.addData("frontLeftMotor", power);
+            telemetry.addData("backLeftMotor", power);
+            telemetry.addData("frontRightMotor", power);
+            telemetry.addData("backRightMotor", power);
+            telemetry.addData("armMotor", power);
+            telemetry.update();
+
+            frontLeftMotor.setPower(power);
+            backLeftMotor.setPower(power);
+            frontRightMotor.setPower(power);
+            backRightMotor.setPower(power);
         }
 
         void goBackward (double power) {
             // func of making robot go backwards
-            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
-            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
+            telemetry.addData("frontLeftMotor", power);
+            telemetry.addData("backLeftMotor", power);
+            telemetry.addData("frontRightMotor", power);
+            telemetry.addData("backRightMotor", power);
+            telemetry.update();
+
+            frontLeftMotor.setPower(power);
+            backLeftMotor.setPower(power);
+            frontRightMotor.setPower(power);
+            backRightMotor.setPower(power);
         }
 
         void turnLeft (double power) {
+            telemetry.addData("frontLeftMotor", power);
+            telemetry.addData("backLeftMotor", power);
+            telemetry.addData("frontRightMotor", power);
+            telemetry.addData("backRightMotor", power);
+            telemetry.update();
+
             // func of making robot go left
-            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
-            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
-            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
+            frontLeftMotor.setPower(-power);
+            backLeftMotor.setPower(-power);
+            frontRightMotor.setPower(power);
+            backRightMotor.setPower(power);
+
+
         }
 
         void turnRight (double power) {
+            telemetry.addData("frontLeftMotor", -power);
+            telemetry.addData("backLeftMotor", -power);
+            telemetry.addData("frontRightMotor", power);
+            telemetry.addData("backRightMotor", power);
+            telemetry.update();
+
             // func of making robot go right
-            frontLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            backLeftMotor.setPower(Range.clip(0,-1.0,1.0));
-            frontRightMotor.setPower(Range.clip(0,-1.0,1.0));
-            backRightMotor.setPower(Range.clip(0,-1.0,1.0));
+            frontLeftMotor.setPower(-power);
+            backLeftMotor.setPower(-power);
+            frontRightMotor.setPower(power);
+            backRightMotor.setPower(power);
         }
 
-        public void strafeRight (double power) {
+        void strafeRight (double power) {
+            telemetry.addData("frontLeftMotor", -power);
+            telemetry.addData("backLeftMotor", power);
+            telemetry.addData("frontRightMotor", power);
+            telemetry.addData("backRightMotor", -power);
+            telemetry.update();
+
             // func of making robot strafe left **still questionable
-            frontLeftMotor.setPower(-1.0);
-            backLeftMotor.setPower(1.0);
-            frontRightMotor.setPower(1.0);
-            backRightMotor.setPower(-1.0);
+            frontLeftMotor.setPower(-power);
+            backLeftMotor.setPower(power);
+            frontRightMotor.setPower(power);
+            backRightMotor.setPower(-power);
 
         }
 
         void strafeLeft (double power) {
+            telemetry.addData("frontLeftMotor", power);
+            telemetry.addData("backLeftMotor", -power);
+            telemetry.addData("frontRightMotor", -power);
+            telemetry.addData("backRightMotor", power);
+            telemetry.update();
+
         //func of making robot strafe right **still questionable*********
-            frontLeftMotor.setPower(1.0);
-            backLeftMotor.setPower(-1.0);
-            frontRightMotor.setPower(-1.0);
-            backRightMotor.setPower(1.0);
+            frontLeftMotor.setPower(power);
+            backLeftMotor.setPower(-power);
+            frontRightMotor.setPower(-power);
+            backRightMotor.setPower(power);
+        }
+//
+        void arm (double power) {
+            telemetry.addData("armMotor", power);
+            telemetry.update();
+            armMotor.setPower(power);
         }
 
 }
