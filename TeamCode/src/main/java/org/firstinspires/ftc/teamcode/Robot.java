@@ -33,7 +33,8 @@ public abstract class Robot extends LinearOpMode  {
             backRightMotor.setDirection(DcMotor.Direction.REVERSE);
         }
 
-        void goForward (double power){
+
+        void goForward ( double power){
             // func of making robot go forwards
             telemetry.addData("frontLeftMotor", power);
             telemetry.addData("backLeftMotor", power);
@@ -48,7 +49,7 @@ public abstract class Robot extends LinearOpMode  {
             backRightMotor.setPower(power);
         }
 
-        void goBackward (double power) {
+        void goBackward ( double power){
             // func of making robot go backwards
             telemetry.addData("frontLeftMotor", power);
             telemetry.addData("backLeftMotor", power);

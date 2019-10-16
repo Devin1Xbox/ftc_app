@@ -88,11 +88,11 @@ public class Test extends LinearOpMode {
     // Determine if stop button has been pressed
     public boolean stopButtonPressed() {
         final boolean isStopRequested1 = true;
-        if(isStopRequested1 == true) {
-           Thread.currentThread().stop();
+        if (isStopRequested1 == true) {
+            Thread.currentThread().stop();
 
         }
-        return(isStopRequested());
+        return (isStopRequested());
     }
 
     @Override
@@ -131,7 +131,7 @@ public class Test extends LinearOpMode {
 ////                if(stopButtonPressed()) {
 ////                    requestOpModeStop();
 ////                }
-//                updateTelemetry();
+//                updateTelemetry();                 DIDNT WORK
 //            }
 //
 //            goDistance(-10000, -1.0);
@@ -141,6 +141,8 @@ public class Test extends LinearOpMode {
 ////                    requestOpModeStop();
 ////                }
 //                updateTelemetry();
-            }
-        }
+//            }
+//        }
+//    }
     }
+}
