@@ -120,7 +120,7 @@ public class Test extends LinearOpMode {
 //        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
-        while(opModeIsActive()) {
+        while (opModeIsActive()) {
 
 
 //            this.sleep(1000);
@@ -144,5 +144,6 @@ public class Test extends LinearOpMode {
 //            }
 //        }
 //    }
+        }
     }
 }

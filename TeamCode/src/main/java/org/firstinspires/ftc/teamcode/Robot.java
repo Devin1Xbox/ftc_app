@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.Range;
 
 public abstract class Robot extends LinearOpMode  {
 
-    private DcMotor motor;
+    public DcMotor motor;
 
     // this is the constructor
     // you instantiate motors and hardware here
@@ -36,12 +36,6 @@ public abstract class Robot extends LinearOpMode  {
 
         void goForward ( double power){
             // func of making robot go forwards
-            telemetry.addData("frontLeftMotor", power);
-            telemetry.addData("backLeftMotor", power);
-            telemetry.addData("frontRightMotor", power);
-            telemetry.addData("backRightMotor", power);
-            telemetry.addData("armMotor", power);
-            telemetry.update();
 
             frontLeftMotor.setPower(power);
             backLeftMotor.setPower(power);
@@ -51,11 +45,6 @@ public abstract class Robot extends LinearOpMode  {
 
         void goBackward ( double power){
             // func of making robot go backwards
-            telemetry.addData("frontLeftMotor", power);
-            telemetry.addData("backLeftMotor", power);
-            telemetry.addData("frontRightMotor", power);
-            telemetry.addData("backRightMotor", power);
-            telemetry.update();
 
             frontLeftMotor.setPower(power);
             backLeftMotor.setPower(power);
@@ -64,11 +53,6 @@ public abstract class Robot extends LinearOpMode  {
         }
 
         void turnLeft (double power) {
-            telemetry.addData("frontLeftMotor", power);
-            telemetry.addData("backLeftMotor", power);
-            telemetry.addData("frontRightMotor", power);
-            telemetry.addData("backRightMotor", power);
-            telemetry.update();
 
             // func of making robot go left
             frontLeftMotor.setPower(-power);
@@ -80,12 +64,6 @@ public abstract class Robot extends LinearOpMode  {
         }
 
         void turnRight (double power) {
-            telemetry.addData("frontLeftMotor", -power);
-            telemetry.addData("backLeftMotor", -power);
-            telemetry.addData("frontRightMotor", power);
-            telemetry.addData("backRightMotor", power);
-            telemetry.update();
-
             // func of making robot go right
             frontLeftMotor.setPower(-power);
             backLeftMotor.setPower(-power);
@@ -94,11 +72,6 @@ public abstract class Robot extends LinearOpMode  {
         }
 
         void strafeRight (double power) {
-            telemetry.addData("frontLeftMotor", -power);
-            telemetry.addData("backLeftMotor", power);
-            telemetry.addData("frontRightMotor", power);
-            telemetry.addData("backRightMotor", -power);
-            telemetry.update();
 
             // func of making robot strafe left **still questionable
             frontLeftMotor.setPower(-power);
@@ -109,11 +82,6 @@ public abstract class Robot extends LinearOpMode  {
         }
 
         void strafeLeft (double power) {
-            telemetry.addData("frontLeftMotor", power);
-            telemetry.addData("backLeftMotor", -power);
-            telemetry.addData("frontRightMotor", -power);
-            telemetry.addData("backRightMotor", power);
-            telemetry.update();
 
         //func of making robot strafe right **still questionable*********
             frontLeftMotor.setPower(power);
@@ -126,6 +94,13 @@ public abstract class Robot extends LinearOpMode  {
             telemetry.addData("armMotor", power);
             telemetry.update();
             armMotor.setPower(power);
+        }
+
+        void resetArm() {
+            armMotor.setPower(0);
+            armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+            telemetry.addData("armMotor", armMotor.getPower());
+            telemetry.update();
         }
 
 }
