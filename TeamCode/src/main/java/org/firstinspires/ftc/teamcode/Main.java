@@ -41,46 +41,43 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.Robot;
 
 
-
-
 /**
  * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
  * the autonomous or the teleop period of an FTC match. The names of OpModes appear on the menu
  * of the FTC Driver Station. When an selection is made from the menu, the corresponding OpMode
  * class is instantiated on the Robot Controller and executed.
- *
+ * <p>
  * This particular OpMode just executes a basic Tank Drive Teleop for a two wheeled robot
  * It includes all the skeletal structure that all linear OpModes contain.
- *
+ * <p>
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Main", group="Linear Opmode")
+@TeleOp(name = "Main", group = "Linear Opmode")
 public class Main extends Robot {
-
-    // Declare OpMode members.
-//    private ElapsedTime runtime = new ElapsedTime();
-//    private DcMotor motor = null;
-
-
-//    double drive = -gamepad1.left_stick_y;
-//    double turn  =  gamepad1.right_stick_x;
-//    leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
-//    rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
 
     @Override
     public void runOpMode() {
         super.runOpMode();
-        System.out.println("This is the hardware map from Main "+ this.hardwareMap);
 
         waitForStart();
 
         while (opModeIsActive()) {
+
+            telemetry.addData("frontLeftMotor", this.frontLeftMotor.getPower());
+            telemetry.addData("backLeftMotor", this.backLeftMotor.getPower());
+            telemetry.addData("frontRightMotor", this.frontRightMotor.getPower());
+            telemetry.addData("backRightMotor", this.backRightMotor.getPower());
+            telemetry.addData("armMotor", this.armMotor.getPower());
+            telemetry.update();
+
+
             //forward
             if ((gamepad1.left_stick_y >= gamepad1.left_stick_x) && (gamepad1.left_stick_y >= -gamepad1.left_stick_x)) {
                 this.goForward(gamepad1.left_stick_y);
+
             }
 
             if ((gamepad1.left_stick_y <= gamepad1.left_stick_x) && (gamepad1.left_stick_y <= -gamepad1.left_stick_x)) {
@@ -99,21 +96,44 @@ public class Main extends Robot {
                 this.strafeLeft(gamepad1.left_trigger);
             }
 
-            if(gamepad1.right_trigger != 0) {
+            if (gamepad1.right_trigger != 0) {
                 this.strafeRight(gamepad1.right_trigger);
             }
-//
-            if(gamepad2.left_stick_y > gamepad2.left_stick_x) {
-                this.arm(gamepad2.left_stick_y * 0.05);
+
+            if (gamepad2.b) {
+                this.resetArm();
             }
 
-            if(gamepad2.left_stick_y < gamepad2.left_stick_x) {
-                this.arm(gamepad2.left_stick_y);
+            if (gamepad2.left_stick_y < 0) {
+                this.arm(-gamepad2.left_stick_y);
             }
-
         }
 
+//            if(gamepad2.left_stick_y > gamepad2.left_stick_x) {
+//                int am = armMotor.getCurrentPosition();
+//                armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//                armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//                armMotor.getCurrentPosition();
+//                this.arm(gamepad2.left_stick_y * 0.05);
+//                while(am <= 0) {
+//                    this.arm(0);
+//                }
+//            }
+//
+//            if(gamepad2.left_stick_y < gamepad2.left_stick_x) {
+//                int am = armMotor.getCurrentPosition();
+//                armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//                armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//                armMotor.getCurrentPosition();
+//                this.arm(gamepad2.left_stick_y);
+//                while(am <= 0) {
+//                    this.arm(0);
+//                }
+//            }
+
     }
+
+
 }
 
-
+//haha im brain look at me lol out loud
