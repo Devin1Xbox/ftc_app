@@ -71,6 +71,8 @@ public class Main extends Robot {
             telemetry.addData("frontRightMotor", this.frontRightMotor.getPower());
             telemetry.addData("backRightMotor", this.backRightMotor.getPower());
             telemetry.addData("armMotor", this.armMotor.getPower());
+            telemetry.addData("servoPosition", this.armServo.getPosition());
+            telemetry.addData("servo1Position", this.armServo1.getPosition());
             telemetry.update();
 
 
@@ -105,7 +107,19 @@ public class Main extends Robot {
             }
 
             if (gamepad2.left_stick_y < 0) {
+                this.arm(gamepad2.left_stick_y);
+            }
+
+            if (gamepad2.left_stick_y >0) {
                 this.arm(-gamepad2.left_stick_y);
+            }
+
+            if (gamepad2.left_bumper) {
+                this.openArm();
+            }
+
+            if (gamepad2.right_bumper){
+                this.closeArm();
             }
         }
 
