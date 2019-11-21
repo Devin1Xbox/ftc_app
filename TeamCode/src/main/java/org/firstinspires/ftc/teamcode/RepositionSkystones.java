@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous(name = "TestAutonomousMovement", group = "LinearOpMode")
-public class TestAutonomousMovement extends Robot {
+@Autonomous(name = "RepositionSkystones", group = "LinearOpMode")
+public class RepositionSkystones extends Robot {
 
 
     @Override
@@ -19,9 +19,10 @@ public class TestAutonomousMovement extends Robot {
         telemetry.addData("frontRight position", frontRightMotor.getCurrentPosition());
         telemetry.addData("backRight position", backRightMotor.getCurrentPosition());
         telemetry.update();
+        //add code
 
-        this.goForwardsInInches(10);
-        this.goBackwardsInInches(5);
+
+
 
     }
 }

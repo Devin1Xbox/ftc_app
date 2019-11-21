@@ -144,9 +144,10 @@ public abstract class Robot extends LinearOpMode  {
                 this.goForward(-0.75);
             }
             this.stopMotors();
+            this.sleep(2000);
         }
 
-        void goBackwardsIncches(double inches) {
+        void goBackwardsInInches(double inches) {
             // we need to do some trail runs to find the real calculation
             double calculatedTime = inches * 36.73469388;
             this.runtime.reset();
@@ -155,6 +156,7 @@ public abstract class Robot extends LinearOpMode  {
                 this.goBackward(0.75);
             }
             this.stopMotors();
+            this.sleep(2000);
         }
 
         void turnLeftInFeet(double feet) {

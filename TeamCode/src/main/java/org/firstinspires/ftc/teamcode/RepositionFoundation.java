@@ -19,15 +19,15 @@ public class RepositionFoundation extends Robot {
         telemetry.addData("frontRight position", frontRightMotor.getCurrentPosition());
         telemetry.addData("backRight position", backRightMotor.getCurrentPosition());
         telemetry.update();
-
+        //all operations already have sleeps for two seconds except for the ones that are used in main
         this.openArm();
-        this.sleep(500);
+        this.sleep(2000);
         this.armMotor.setPower(0.8);
+        this.sleep(2000);
         this.goForwardsInInches(26);
-        this.sleep(1000);
         this.resetArm();
         this.sleep(2000);
-        this.goBackwardsIncches(29.5);
+        this.goBackwardsInInches(29.5);
 
     }
 }
