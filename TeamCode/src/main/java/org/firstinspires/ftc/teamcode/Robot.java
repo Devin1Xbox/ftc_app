@@ -2,14 +2,22 @@ package org.firstinspires.ftc.teamcode;
 
 import android.util.Log;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoImpl;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
+
+import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRRangeSensor;
 
 public abstract class Robot extends LinearOpMode  {
 
@@ -17,6 +25,10 @@ public abstract class Robot extends LinearOpMode  {
 
 
     ElapsedTime runtime = new ElapsedTime();
+
+    OpticalDistanceSensor oDistanceSensor;
+
+    ColorSensor colorSensor;
 
     Servo armServo, armServo1;
 
@@ -32,6 +44,8 @@ public abstract class Robot extends LinearOpMode  {
             armMotor = hardwareMap.get(DcMotor.class, "armMotor");
             armServo = hardwareMap.get(ServoImpl.class, "armServo");
             armServo1 = hardwareMap.get(ServoImpl.class, "armServo1");
+            colorSensor = hardwareMap.colorSensor.get("colorSensor");
+            oDistanceSensor = hardwareMap.get(OpticalDistanceSensor.class, "oDistanceSensor");
 
 
             frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
