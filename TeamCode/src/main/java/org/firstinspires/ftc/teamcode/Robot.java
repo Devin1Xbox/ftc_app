@@ -184,6 +184,28 @@ public abstract class Robot extends LinearOpMode  {
             this.stopMotors();
         }
 
+        void strafeLeftInInches(double inches) {
+            double calculatedTime = inches * 36.73469388;
+            this.runtime.reset();
+
+            while(this.runtime.milliseconds() < calculatedTime) {
+                this.strafeLeft(-0.75);
+            }
+            this.stopMotors();
+            this.sleep(2000);
+        }
+
+        void strafeRightInInches(double inches) {
+            double calculatedTime = inches * 36.73469388;
+            this.runtime.reset();
+
+            while(this.runtime.milliseconds() < calculatedTime) {
+                this.strafeRight(-0.75);
+            }
+            this.stopMotors();
+            this.sleep(2000);
+        }
+
         void encodedGoForwards(int position, double power) {
 
             int timeout = 2;

@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous(name = "RepositionFoundation", group = "LinearOpMode")
-public class RepositionFoundation extends Robot {
+@Autonomous(name = "RepositionFoundationBlue", group = "LinearOpMode")
+public class RepositionFoundationBlue extends Robot {
 
 
     @Override
@@ -28,6 +28,6 @@ public class RepositionFoundation extends Robot {
         this.resetArm();
         this.sleep(2000);
         this.goBackwardsInInches(29.5);
-
+        this.strafeRightInInches(35.25);
     }
 }

@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 
-@Autonomous(name = "RepositionSkystones", group = "LinearOpMode")
-public class RepositionSkystones extends Robot {
+@Autonomous(name = "RepositionSkystonesRed", group = "LinearOpMode")
+public class RepositionSkystonesRed extends Robot {
 
 
     @Override
@@ -27,15 +27,28 @@ public class RepositionSkystones extends Robot {
             telemetry.addData("currentDistance", oDistanceSensor.getLightDetected());
             telemetry.update();
 
+            openArm();
+
             red = colorSensor.red();
 
-            goForward(.25);
-            if(red > 150) {
+//            goForward(.25);
+//            if(red > 150) {
+//                this.stopMotors();
+//                closeArm();
+//                goBackwardsInInches(47);
+//            }
+            goForwardsInInches(25);
+            strafeLeftInInches(13);//maybe?
+            strafeRight(0.25);
+            if(red < 20) {
                 this.stopMotors();
-                stop();
+                strafeRightInInches(3.33);
+                goForwardsInInches(3.5);
+                closeArm();
+                goBackwardsInInches(47);
+                strafeLeftInInches(52);
+                strafeRightInInches(52);
             }
-
-
         }
 
 

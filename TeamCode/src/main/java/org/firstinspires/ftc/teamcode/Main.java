@@ -110,7 +110,7 @@ public class Main extends Robot {
                 this.arm(gamepad2.left_stick_y);
             }
 
-            if (gamepad2.left_stick_y >0) {
+            if (gamepad2.left_stick_y > 0) {
                 this.arm(-gamepad2.left_stick_y);
             }
 
