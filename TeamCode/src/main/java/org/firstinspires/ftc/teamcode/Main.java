@@ -65,7 +65,7 @@ public class Main extends Robot {
         waitForStart();
 
         while (opModeIsActive()) {
-
+            armMotor.setDirection(DcMotor.Direction.FORWARD);
             telemetry.addData("frontLeftMotor", this.frontLeftMotor.getPower());
             telemetry.addData("backLeftMotor", this.backLeftMotor.getPower());
             telemetry.addData("frontRightMotor", this.frontRightMotor.getPower());

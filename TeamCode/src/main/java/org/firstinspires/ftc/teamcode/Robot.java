@@ -159,7 +159,7 @@ public abstract class Robot extends LinearOpMode  {
             this.runtime.reset();
 
             while(this.opModeIsActive() && this.runtime.milliseconds() < calculatedTime) {
-                this.goBackward(0.75);
+                this.goBackward(0.50);
             }
             this.stopMotors();
             this.sleep(2000);
@@ -241,7 +241,6 @@ public abstract class Robot extends LinearOpMode  {
         void whileLoopWait(double ms) {
             ElapsedTime time = new ElapsedTime();
             time.reset();
-            this.armMotor.setPower(1.0);
             while (this.opModeIsActive() && time.milliseconds() < 2000) {
                 // do nothing; wait for x seconds
             }
