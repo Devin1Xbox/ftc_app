@@ -22,9 +22,11 @@ public class RepositionFoundationRed extends Robot {
         //all operations already have sleeps for two seconds except for the ones that are used in main
         this.openArm();
         this.sleep(2000);
-        this.armMotor.setPower(0.8);
+        this.armMotor.setPower(1.0);
         this.sleep(2000);
         this.goForwardsInInches(26);
+        this.strafeRightInInches(3);
+        this.armMotor.setPower(1.0);
         this.resetArm();
         this.sleep(2000);
         this.goBackwardsInInches(29.5);

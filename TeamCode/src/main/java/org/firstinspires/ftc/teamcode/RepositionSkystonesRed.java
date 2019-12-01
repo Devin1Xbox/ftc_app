@@ -38,16 +38,19 @@ public class RepositionSkystonesRed extends Robot {
 //                goBackwardsInInches(47);
 //            }
             goForwardsInInches(25);
-            strafeLeftInInches(13);//maybe?
-            strafeRight(0.25);
+            strafeRightInInches(13);//maybe?
+            strafeLeft(0.25);
             if(red < 20) {
                 this.stopMotors();
-                strafeRightInInches(3.33);
+                strafeLeftInInches(3.33);
                 goForwardsInInches(3.5);
                 closeArm();
                 goBackwardsInInches(47);
-                strafeLeftInInches(52);
                 strafeRightInInches(52);
+                openArm();
+                goForwardsInInches(4);
+                goBackwardsInInches(5);
+                strafeLeftInInches(52);
             }
         }
 

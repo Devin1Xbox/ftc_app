@@ -189,7 +189,7 @@ public abstract class Robot extends LinearOpMode  {
             this.runtime.reset();
 
             while(this.runtime.milliseconds() < calculatedTime) {
-                this.strafeLeft(-0.75);
+                this.strafeLeft(0.75);
             }
             this.stopMotors();
             this.sleep(2000);
@@ -200,7 +200,7 @@ public abstract class Robot extends LinearOpMode  {
             this.runtime.reset();
 
             while(this.runtime.milliseconds() < calculatedTime) {
-                this.strafeRight(-0.75);
+                this.strafeRight(0.75);
             }
             this.stopMotors();
             this.sleep(2000);
