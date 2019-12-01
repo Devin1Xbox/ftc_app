@@ -26,8 +26,6 @@ public abstract class Robot extends LinearOpMode  {
 
     ElapsedTime runtime = new ElapsedTime();
 
-    OpticalDistanceSensor oDistanceSensor;
-
     ColorSensor colorSensor;
 
     Servo armServo, armServo1;
@@ -45,8 +43,6 @@ public abstract class Robot extends LinearOpMode  {
             armServo = hardwareMap.get(ServoImpl.class, "armServo");
             armServo1 = hardwareMap.get(ServoImpl.class, "armServo1");
             colorSensor = hardwareMap.colorSensor.get("colorSensor");
-            oDistanceSensor = hardwareMap.get(OpticalDistanceSensor.class, "oDistanceSensor");
-
 
             frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
             backLeftMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -103,8 +99,6 @@ public abstract class Robot extends LinearOpMode  {
         }
 
         void strafeLeft (double power) {
-
-        //func of making robot strafe right **still questionable*********
             frontLeftMotor.setPower(power);
             backLeftMotor.setPower(-power);
             frontRightMotor.setPower(-power);
@@ -137,15 +131,13 @@ public abstract class Robot extends LinearOpMode  {
         }
 
         void openArm() {
-            this.sleep(176);
             armServo.setPosition(1);
             armServo1.setPosition(0);
         }
 
         void closeArm() {
-
             armServo.setPosition(0);
-            this.sleep(176);
+            this.sleep(213);
             armServo1.setPosition(1);
         }
 
@@ -154,7 +146,7 @@ public abstract class Robot extends LinearOpMode  {
             double calculatedTime = inches * 36.73469388;
             this.runtime.reset();
 
-            while(this.runtime.milliseconds() < calculatedTime && opModeIsActive()) {
+            while(this.opModeIsActive() && this.runtime.milliseconds() < calculatedTime && opModeIsActive()) {
                 this.goForward(-0.75);
             }
             this.stopMotors();
@@ -166,7 +158,7 @@ public abstract class Robot extends LinearOpMode  {
             double calculatedTime = inches * 36.73469388;
             this.runtime.reset();
 
-            while(this.runtime.milliseconds() < calculatedTime) {
+            while(this.opModeIsActive() && this.runtime.milliseconds() < calculatedTime) {
                 this.goBackward(0.75);
             }
             this.stopMotors();
@@ -178,7 +170,7 @@ public abstract class Robot extends LinearOpMode  {
             double calculatedTime = feet;
             this.runtime.reset();
 
-            while(this.runtime.milliseconds() < calculatedTime) {
+            while(this.opModeIsActive() && this.runtime.milliseconds() < calculatedTime) {
                 this.turnLeft(-0.75);
             }
             this.stopMotors();
@@ -188,7 +180,7 @@ public abstract class Robot extends LinearOpMode  {
             double calculatedTime = inches * 36.73469388;
             this.runtime.reset();
 
-            while(this.runtime.milliseconds() < calculatedTime) {
+            while(this.opModeIsActive() && this.runtime.milliseconds() < calculatedTime) {
                 this.strafeLeft(0.75);
             }
             this.stopMotors();
@@ -199,7 +191,7 @@ public abstract class Robot extends LinearOpMode  {
             double calculatedTime = inches * 36.73469388;
             this.runtime.reset();
 
-            while(this.runtime.milliseconds() < calculatedTime) {
+            while(this.opModeIsActive() && this.runtime.milliseconds() < calculatedTime) {
                 this.strafeRight(0.75);
             }
             this.stopMotors();
@@ -243,6 +235,15 @@ public abstract class Robot extends LinearOpMode  {
                 telemetry.addData("backRight position", positionBR);
                 telemetry.update();
 
+            }
+        }
+
+        void whileLoopWait(double ms) {
+            ElapsedTime time = new ElapsedTime();
+            time.reset();
+            this.armMotor.setPower(1.0);
+            while (this.opModeIsActive() && time.milliseconds() < 2000) {
+                // do nothing; wait for x seconds
             }
         }
 

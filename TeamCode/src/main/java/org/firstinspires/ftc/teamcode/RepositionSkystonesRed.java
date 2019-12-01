@@ -5,9 +5,6 @@ import android.util.Log;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
-
 @Autonomous(name = "RepositionSkystonesRed", group = "LinearOpMode")
 public class RepositionSkystonesRed extends Robot {
 
@@ -19,12 +16,10 @@ public class RepositionSkystonesRed extends Robot {
         int red = 0;
 
         waitForStart();
-        oDistanceSensor.enableLed(true);
         while(opModeIsActive()) {
             telemetry.addData("currentBlueValue", colorSensor.blue());
             telemetry.addData("currentRedValue", colorSensor.red());
             telemetry.addData("currentGreenValue", colorSensor.green());
-            telemetry.addData("currentDistance", oDistanceSensor.getLightDetected());
             telemetry.update();
 
             openArm();
@@ -37,8 +32,8 @@ public class RepositionSkystonesRed extends Robot {
 //                closeArm();
 //                goBackwardsInInches(47);
 //            }
-            goForwardsInInches(25);
-            strafeRightInInches(13);//maybe?
+            goForwardsInInches(22.3);
+//            while(red >)//maybe?
             strafeLeft(0.25);
             if(red < 20) {
                 this.stopMotors();
@@ -53,15 +48,5 @@ public class RepositionSkystonesRed extends Robot {
                 strafeLeftInInches(52);
             }
         }
-
-
-//        telemetry.addData("frontLeft Position", frontLeftMotor.getCurrentPosition());
-//        telemetry.addData("backLeft position", backLeftMotor.getCurrentPosition());
-//        telemetry.addData("frontRight position", frontRightMotor.getCurrentPosition());
-//        telemetry.addData("backRight position", backRightMotor.getCurrentPosition());
-//        telemetry.update();
-//        add code
-
-
     }
 }
