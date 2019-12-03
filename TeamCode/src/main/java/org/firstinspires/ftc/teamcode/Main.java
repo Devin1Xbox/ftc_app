@@ -54,7 +54,7 @@ import org.firstinspires.ftc.teamcode.Robot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name = "Main", group = "Linear Opmode")
+@TeleOp(name = "Main", group = "LinearOpmode")
 public class Main extends Robot {
 
 

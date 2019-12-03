@@ -4,6 +4,9 @@ import android.util.Log;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "RepositionSkystonesRed", group = "LinearOpMode")
 public class RepositionSkystonesRed extends Robot {
@@ -13,40 +16,44 @@ public class RepositionSkystonesRed extends Robot {
     public void runOpMode() {
         super.runOpMode();
 
-        int red = 0;
+        int red = colorSensor.red();
+        int blue = colorSensor.blue();
+        int green = colorSensor.green();
 
         waitForStart();
         while(opModeIsActive()) {
-            telemetry.addData("currentBlueValue", colorSensor.blue());
-            telemetry.addData("currentRedValue", colorSensor.red());
-            telemetry.addData("currentGreenValue", colorSensor.green());
+            telemetry.addData("currentBlueValue", blue);
+            telemetry.addData("currentRedValue", red);
+            telemetry.addData("currentGreenValue", green);
             telemetry.update();
 
-            openArm();
-
-            red = colorSensor.red();
-
-//            goForward(.25);
-//            if(red > 150) {
-//                this.stopMotors();
-//                closeArm();
-//                goBackwardsInInches(47);
-//            }
-            goForwardsInInches(22.3);
-//            while(red >)//maybe?
-            strafeLeft(0.25);
-            if(red < 20) {
-                this.stopMotors();
-                strafeLeftInInches(3.33);
-                goForwardsInInches(3.5);
-                closeArm();
-                goBackwardsInInches(47);
-                strafeRightInInches(52);
-                openArm();
-                goForwardsInInches(4);
-                goBackwardsInInches(5);
-                strafeLeftInInches(52);
+            this.armMotor.setPower(1.0);
+            this.whileLoopWait(1000);
+            this.openArm();
+            ElapsedTime time = new ElapsedTime();
+            runtime.reset();
+            while (this.opModeIsActive() && time.milliseconds() < 1000) {
+                this.armMotor.setPower(0);
+                this.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
             }
+
+            goForwardsInInches(23.2);
+            strafeRightInInches(20);
+            turnLeftInMilli(69);
+            goForwardsInInches(1.4);
+            Log.i("REPOSITION-CLASS", "red: " + this.red);
+            strafeLeftUntilDetectSkystone();
+            this.stopMotors();
+//            runtime.reset();
+            goForwardsInInches(5);
+            closeArm();
+            goBackwardsInInches(38);
+            strafeRightInInches(52);
+            openArm();
+            goForwardsInInches(4);
+            goBackwardsInInches(5);
+            strafeLeftInInches(52);
+            stop();
         }
     }
 }
