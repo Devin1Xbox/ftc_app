@@ -16,12 +16,11 @@ public class RepositionSkystonesRed extends Robot {
     public void runOpMode() {
         super.runOpMode();
 
-        int red = colorSensor.red();
-        int blue = colorSensor.blue();
-        int green = colorSensor.green();
-
         waitForStart();
         while(opModeIsActive()) {
+            int red = colorSensor.red();
+            int blue = colorSensor.blue();
+            int green = colorSensor.green();
             telemetry.addData("currentBlueValue", blue);
             telemetry.addData("currentRedValue", red);
             telemetry.addData("currentGreenValue", green);
@@ -38,9 +37,9 @@ public class RepositionSkystonesRed extends Robot {
             }
 
             goForwardsInInches(23.2);
-            strafeRightInInches(20);
-            turnLeftInMilli(69);
-            goForwardsInInches(1.4);
+            strafeRightInInches(22);
+            turnLeftInMilli(42);
+            goForwardsInInches(1);
             Log.i("REPOSITION-CLASS", "red: " + this.red);
             strafeLeftUntilDetectSkystone();
             this.stopMotors();
@@ -50,9 +49,9 @@ public class RepositionSkystonesRed extends Robot {
             goBackwardsInInches(38);
             strafeRightInInches(52);
             openArm();
-            goForwardsInInches(4);
-            goBackwardsInInches(5);
-            strafeLeftInInches(52);
+            goForwardsInInches(5);
+            goBackwardsInInches(7);
+            strafeLeftInInches(6);
             stop();
         }
     }

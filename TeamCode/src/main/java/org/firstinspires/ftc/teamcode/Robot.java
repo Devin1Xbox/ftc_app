@@ -173,7 +173,7 @@ public abstract class Robot extends LinearOpMode {
             telemetry.addData("currentRedValue", red);
             telemetry.addData("currentGreenValue", green);
             telemetry.update();
-            this.goBackward(0.42);
+            this.goBackward(0.375);
         }
         this.stopMotors();
         this.sleep(2000);

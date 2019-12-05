@@ -23,7 +23,7 @@ public class RepositionFoundationBlue extends Robot {
         telemetry.addData("backRight position", backRightMotor.getCurrentPosition());
         telemetry.update();
         this.armMotor.setPower(1.0);
-        this.whileLoopWait(1000);
+        this.whileLoopWait(500);
         this.openArm();
         this.goForwardsInInches(32.6);
         this.strafeLeftInInches(4);
@@ -35,10 +35,10 @@ public class RepositionFoundationBlue extends Robot {
             this.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         }
         this.closeArm();
-        this.whileLoopWait(500);
+        this.whileLoopWait(375);
         this.openArm();
-        this.whileLoopWait(500);
-        this.goBackwardsInInches(40);
+        this.whileLoopWait(375);
+        this.goBackwardsInInches(45);
         time.reset();
         while (opModeIsActive() && time.milliseconds() < 500) {
             this.armMotor.setPower(0.78);
@@ -46,6 +46,6 @@ public class RepositionFoundationBlue extends Robot {
         this.strafeRightInInches(25);
         this.armMotor.setPower(0);
         this.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        this.strafeRightInInches(25);
+        this.strafeRightInInches(27);
     }
 }
