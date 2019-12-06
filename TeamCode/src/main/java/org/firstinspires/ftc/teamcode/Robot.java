@@ -157,7 +157,7 @@ public abstract class Robot extends LinearOpMode {
             this.goForward(-0.75);
         }
         this.stopMotors();
-        this.sleep(2000);
+        this.sleep(500);
     }
 
     void goBackwardsInInches(double inches) {
@@ -176,7 +176,7 @@ public abstract class Robot extends LinearOpMode {
             this.goBackward(0.375);
         }
         this.stopMotors();
-        this.sleep(2000);
+        this.sleep(500);
     }
 
     void turnLeftInMilli(double milliseconds) {
@@ -230,10 +230,54 @@ public abstract class Robot extends LinearOpMode {
             this.strafeLeft(0.75);
         }
         this.stopMotors();
-        this.sleep(2000);
+        this.sleep(500);
     }
 
     void strafeLeftUntilDetectSkystone() {
+        this.runtime.reset();
+
+        while (
+                this.opModeIsActive() && // user hasn't hit the stop button
+                        this.runtime.milliseconds() < 5000 && // strafe for 10 seconds max in case it doesn't find the skystone
+                        !isSkystone()
+        ) {
+            // nested while loop for compensating for inconsistent strafing
+            // every 1.6 seconds we turn slightly to the right because it doesn't strafe straight
+//            ElapsedTime timer = new ElapsedTime();
+//            timer.reset();
+//            Log.i("OUTER-LOOP", "red: " + red);
+//            while (timer.seconds() < 1) {
+//                if(red <= 19 && red > 14) {
+//                    break;
+//                }
+//                Log.i("INNER-LOOP", "red: " + red);
+//                red = colorSensor.red();
+//                blue = colorSensor.blue();
+//                green = colorSensor.green();
+//                telemetry.addData("currentBlueValue", blue);
+//                telemetry.addData("currentRedValue", red);
+//                telemetry.addData("currentGreenValue", green);
+//                telemetry.update();
+//                this.strafeLeft(0.25);
+//            }
+//            if (timer.seconds() >= 1) {
+//                turnRightInMilli(50);
+//                goForwardsInInches(.3);
+//            }
+            Log.i("STRAFING", "red: " + red);
+            red = colorSensor.red();
+            blue = colorSensor.blue();
+            green = colorSensor.green();
+            telemetry.addData("currentBlueValue", blue);
+            telemetry.addData("currentRedValue", red);
+            telemetry.addData("currentGreenValue", green);
+            telemetry.update();
+            this.strafeLeft(0.25);
+
+        }
+    }
+
+    void strafeRightUntilDetectSkystone() {
         this.runtime.reset();
 
         while (

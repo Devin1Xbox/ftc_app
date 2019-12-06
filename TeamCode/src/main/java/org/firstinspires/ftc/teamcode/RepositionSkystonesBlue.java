@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "RepositionSkystonesRed", group = "LinearOpMode")
-public class RepositionSkystonesRed extends Robot {
+@Autonomous(name = "RepositionSkystonesBlue", group = "LinearOpMode")
+public class RepositionSkystonesBlue extends Robot {
 
 
     @Override
@@ -37,22 +37,22 @@ public class RepositionSkystonesRed extends Robot {
             }
 
             goForwardsInInches(23.2);
-            strafeRightInInches(23.5);
-            turnLeftInMilli(32);
+            strafeLeftInInches(23.5);
+            turnRightInMilli(32);
             goForwardsInInches(1);
             Log.i("REPOSITION-CLASS", "red: " + this.red);
-            strafeLeftUntilDetectSkystone();
+            strafeRightUntilDetectSkystone();
             this.stopMotors();
 //            runtime.reset();
-            this.strafeLeftInInches(0.4);
-            goForwardsInInches(7.5);
+            this.strafeRightInInches(0.87);
+            goForwardsInInches(7);
             closeArm();
             goBackwardsInInches(38);
-            strafeRightInInches(60);
+            strafeLeftInInches(60);
             openArm();
             goForwardsInInches(5);
             goBackwardsInInches(7);
-            strafeLeftInInches(9);
+            strafeRightInInches(9);
             stop();
         }
     }

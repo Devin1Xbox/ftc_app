@@ -28,24 +28,29 @@ public class RepositionFoundationBlue extends Robot {
         this.goForwardsInInches(32.6);
         this.strafeLeftInInches(4);
         this.resetArm();
-        ElapsedTime time = new ElapsedTime();
-        time.reset();
-        while (this.opModeIsActive() && time.milliseconds() < 1000) {
-            this.armMotor.setPower(0);
-            this.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        }
+        whileLoopWait(1000);
+//        ElapsedTime time = new ElapsedTime();
+//        time.reset();
+//        while (this.opModeIsActive() && time.milliseconds() < 1000) {
+//            this.armMotor.setPower(0);
+//            this.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+//        }
         this.closeArm();
         this.whileLoopWait(375);
         this.openArm();
         this.whileLoopWait(375);
         this.goBackwardsInInches(45);
-        time.reset();
-        while (opModeIsActive() && time.milliseconds() < 500) {
-            this.armMotor.setPower(0.78);
-        }
-        this.strafeRightInInches(25);
-        this.armMotor.setPower(0);
-        this.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        this.strafeRightInInches(27);
+        this.armMotor.setPower(0.78);
+        this.whileLoopWait(500);
+        this.strafeRightInInches(38);
+        this.resetArm();
+        this.turnLeftInMilli(100);
+        this.closeArm();
+        this.goForwardsInInches(58);
+        this.strafeLeftInInches(27);
+        this.goBackwardsInInches(50);
+        this.strafeRightInInches(57);
+        this.closeArm();
+        stop();
     }
 }
