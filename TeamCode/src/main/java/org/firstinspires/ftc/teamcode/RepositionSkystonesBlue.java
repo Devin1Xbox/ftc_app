@@ -18,6 +18,7 @@ public class RepositionSkystonesBlue extends Robot {
 
         waitForStart();
         while(opModeIsActive()) {
+            armMotor.setDirection(DcMotor.Direction.REVERSE);
             int red = colorSensor.red();
             int blue = colorSensor.blue();
             int green = colorSensor.green();
@@ -36,7 +37,7 @@ public class RepositionSkystonesBlue extends Robot {
                 this.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
             }
 
-            goForwardsInInches(23.2);
+            goForwardsInInches(22.5);
             strafeLeftInInches(23.5);
             turnRightInMilli(32);
             goForwardsInInches(1);
@@ -52,7 +53,7 @@ public class RepositionSkystonesBlue extends Robot {
             openArm();
             goForwardsInInches(5);
             goBackwardsInInches(7);
-            strafeRightInInches(9);
+            strafeRightInInches(13);
             stop();
         }
     }

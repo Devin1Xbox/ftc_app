@@ -18,6 +18,7 @@ public class RepositionSkystonesRed extends Robot {
 
         waitForStart();
         while(opModeIsActive()) {
+            armMotor.setDirection(DcMotor.Direction.REVERSE);
             int red = colorSensor.red();
             int blue = colorSensor.blue();
             int green = colorSensor.green();
