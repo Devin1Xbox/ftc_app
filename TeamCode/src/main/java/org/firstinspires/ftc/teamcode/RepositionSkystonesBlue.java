@@ -18,6 +18,7 @@ public class RepositionSkystonesBlue extends Robot {
 
         waitForStart();
         while(opModeIsActive()) {
+//            colorSensor.enableLed(true);
             armMotor.setDirection(DcMotor.Direction.REVERSE);
             int red = colorSensor.red();
             int blue = colorSensor.blue();
@@ -37,23 +38,29 @@ public class RepositionSkystonesBlue extends Robot {
                 this.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
             }
 
-            goForwardsInInches(22.5);
-            strafeLeftInInches(23.5);
-            turnRightInMilli(32);
+            goForwardsInInches(18);
+            strafeLeftInInches(13);
             goForwardsInInches(1);
+            turnLeftInMilli(10);
             Log.i("REPOSITION-CLASS", "red: " + this.red);
             strafeRightUntilDetectSkystone();
             this.stopMotors();
 //            runtime.reset();
-            this.strafeRightInInches(0.87);
-            goForwardsInInches(7);
+            this.strafeRightInInches(0.66);
+//            goForwardsInInches(14);
+            time.reset();
+            while(time.milliseconds() < 2000) {
+                this.goForward(-0.2);
+            }
+            this.stopMotors();
             closeArm();
             goBackwardsInInches(38);
-            strafeLeftInInches(60);
+            strafeLeftInInches(70);
             openArm();
             goForwardsInInches(5);
             goBackwardsInInches(7);
-            strafeRightInInches(13);
+            strafeRightInInches(26);
+//            colorSensor.enableLed(false);
             stop();
         }
     }

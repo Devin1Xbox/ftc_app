@@ -15,6 +15,7 @@ public class RepositionFoundationRed extends Robot {
 
         @Override
         public void runOpMode() {
+//                colorSensor.enableLed(true);
                 super.runOpMode();
 
                 waitForStart();
@@ -24,34 +25,30 @@ public class RepositionFoundationRed extends Robot {
                 telemetry.addData("frontRight position", frontRightMotor.getCurrentPosition());
                 telemetry.addData("backRight position", backRightMotor.getCurrentPosition());
                 telemetry.update();
+
+
                 this.armMotor.setPower(1.0);
                 this.whileLoopWait(500);
                 this.openArm();
                 this.goForwardsInInches(32.6);
-                this.strafeRightInInches(4);
+                this.strafeRightInInches(11);
                 this.resetArm();
                 whileLoopWait(1000);
-//        ElapsedTime time = new ElapsedTime();
-//        time.reset();
-//        while (this.opModeIsActive() && time.milliseconds() < 1000) {
-//            this.armMotor.setPower(0);
-//            this.armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-//        }
                 this.closeArm();
                 this.whileLoopWait(375);
                 this.openArm();
                 this.whileLoopWait(375);
                 this.goBackwardsInInches(45);
-                this.armMotor.setPower(0.78);
+                this.armMotor.setPower(1.0);
                 this.whileLoopWait(500);
                 this.strafeLeftInInches(38);
                 this.resetArm();
-                this.turnRightInMilli(100);
                 this.closeArm();
-                this.goForwardsInInches(56);
+                turnRightInMilli(32);
+                this.goForwardsInInches(50);
                 this.strafeRightInInches(27);
-                this.goBackwardsInInches(50);
-                this.strafeLeftInInches(57);
+                this.goBackwardsInInches(60);
+                this.strafeLeftInInches(52);
                 this.closeArm();
                 stop();
         }

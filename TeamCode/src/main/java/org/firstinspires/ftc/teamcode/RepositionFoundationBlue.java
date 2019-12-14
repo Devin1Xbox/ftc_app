@@ -14,6 +14,7 @@ public class RepositionFoundationBlue extends Robot {
     @Override
     public void runOpMode() {
         super.runOpMode();
+        colorSensor.enableLed(true);
 
         waitForStart();
         armMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -26,7 +27,7 @@ public class RepositionFoundationBlue extends Robot {
         this.whileLoopWait(500);
         this.openArm();
         this.goForwardsInInches(32.6);
-        this.strafeLeftInInches(4);
+        this.strafeLeftInInches(9);
         this.resetArm();
         whileLoopWait(1000);
 //        ElapsedTime time = new ElapsedTime();
@@ -39,18 +40,23 @@ public class RepositionFoundationBlue extends Robot {
         this.whileLoopWait(375);
         this.openArm();
         this.whileLoopWait(375);
-        this.goBackwardsInInches(45);
+//        this.goBackwardsInInches(45);
+        ElapsedTime Time = new ElapsedTime();
+        Time.reset();
+        while(opModeIsActive() && Time.milliseconds() < 4000){
+            this.goBackward(0.2);
+        }
         this.armMotor.setPower(0.78);
-        this.whileLoopWait(500);
         this.strafeRightInInches(38);
         this.resetArm();
-        this.turnLeftInMilli(100);
+        this.turnLeftInMilli(42);
         this.closeArm();
-        this.goForwardsInInches(58);
+        this.goForwardsInInches(50);
         this.strafeLeftInInches(27);
         this.goBackwardsInInches(50);
         this.strafeRightInInches(57);
         this.closeArm();
+        colorSensor.enableLed(false);
         stop();
     }
 }

@@ -65,6 +65,7 @@ public class Main extends Robot {
         waitForStart();
 
         while (opModeIsActive()) {
+//            colorSensor.enableLed(true);
             armMotor.setDirection(DcMotor.Direction.FORWARD);
             telemetry.addData("frontLeftMotor", this.frontLeftMotor.getPower());
             telemetry.addData("backLeftMotor", this.backLeftMotor.getPower());
@@ -144,7 +145,7 @@ public class Main extends Robot {
 //                    this.arm(0);
 //                }
 //            }
-
+//        colorSensor.enableLed(false);
     }
 
 

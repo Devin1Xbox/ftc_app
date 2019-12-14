@@ -18,6 +18,7 @@ public class RepositionSkystonesRed extends Robot {
 
         waitForStart();
         while(opModeIsActive()) {
+//            colorSensor.enableLed(true);
             armMotor.setDirection(DcMotor.Direction.REVERSE);
             int red = colorSensor.red();
             int blue = colorSensor.blue();
@@ -38,7 +39,7 @@ public class RepositionSkystonesRed extends Robot {
             }
 
             goForwardsInInches(23.2);
-            strafeRightInInches(23.5);
+            strafeRightInInches(13);
             turnLeftInMilli(32);
             goForwardsInInches(1);
             Log.i("REPOSITION-CLASS", "red: " + this.red);
@@ -54,6 +55,7 @@ public class RepositionSkystonesRed extends Robot {
             goForwardsInInches(5);
             goBackwardsInInches(7);
             strafeLeftInInches(9);
+//            colorSensor.enableLed(false);
             stop();
         }
     }

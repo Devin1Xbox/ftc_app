@@ -238,7 +238,7 @@ public abstract class Robot extends LinearOpMode {
 
         while (
                 this.opModeIsActive() && // user hasn't hit the stop button
-                        this.runtime.milliseconds() < 5000 && // strafe for 10 seconds max in case it doesn't find the skystone
+                        this.runtime.milliseconds() < 3.5 && // strafe for 10 seconds max in case it doesn't find the skystone
                         !isSkystone()
         ) {
             // nested while loop for compensating for inconsistent strafing
